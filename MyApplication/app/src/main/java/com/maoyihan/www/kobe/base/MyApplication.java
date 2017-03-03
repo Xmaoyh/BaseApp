@@ -17,4 +17,8 @@ public class MyApplication extends Application {
     public void onCreate() {
         context = getApplicationContext();
     }
+
+    public static MyApplication getInstance() {  
+          return app;  
+       }  
 }
