@@ -17,4 +17,18 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:text="Hello World!"/>
+
+    <com.maoyihan.www.kobe.widget.MyImage
+        android:id="@+id/image"
+        android:src="@mipmap/apic_derivative"
+        android:layout_width="wrap_content"
+        android:layout_height="wrap_content"/>
+
+    <Button
+        android:id="@+id/btn_animation"
+        android:layout_alignParentBottom="true"
+        android:layout_marginBottom="50dp"
+        android:text="启动"
+        android:layout_width="80dp"
+        android:layout_height="50dp"/>
 </RelativeLayout>

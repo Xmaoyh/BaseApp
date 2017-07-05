@@ -1,5 +1,7 @@
 package com.maoyihan.www.kobe.module.home.view.activity;
 
+import android.animation.ObjectAnimator;
+import android.animation.ValueAnimator;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -12,11 +14,15 @@ import android.support.v7.app.AppCompatActivity;
 import android.support.v7.widget.Toolbar;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Button;
 
 import com.maoyihan.www.kobe.R;
+import com.maoyihan.www.kobe.widget.MyImage;
 
 public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
+    private MyImage myImage;
+    private Button btnAnimation;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -42,6 +48,10 @@ public class MainActivity extends AppCompatActivity
 
         NavigationView navigationView = (NavigationView) findViewById(R.id.nav_view);
         navigationView.setNavigationItemSelectedListener(this);
+
+        myImage = (MyImage) findViewById(R.id.image);
+        btnAnimation = (Button) findViewById(R.id.btn_animation);
+        testValueScroll();
     }
 
     @Override
@@ -99,5 +109,28 @@ public class MainActivity extends AppCompatActivity
         DrawerLayout drawer = (DrawerLayout) findViewById(R.id.drawer_layout);
         drawer.closeDrawer(GravityCompat.START);
         return true;
+    }
+
+    private void testValueScroll(){
+       final int startX = 0;
+       final int deltaX = -100;
+       final ValueAnimator animator = ValueAnimator.ofInt(0,1).setDuration(1000);
+        animator.addUpdateListener(new ValueAnimator.AnimatorUpdateListener() {
+            @Override
+            public void onAnimationUpdate(ValueAnimator animation) {
+                float fraction = animator.getAnimatedFraction();
+                myImage.scrollTo(startX + (int)(deltaX * fraction),0);
+            }
+        });
+
+        btnAnimation.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                ObjectAnimator objAnimator = ObjectAnimator.ofFloat(myImage,"rotation",0f,360f);
+                objAnimator.setRepeatCount(ValueAnimator.REVERSE);
+                objAnimator.setDuration(1500);
+                objAnimator.start();
+            }
+        });
     }
 }

@@ -100,7 +100,7 @@ public class DialogUtils {
      * @return 返回字符串
      */
     public static String getString(int id) {
-        return MyApplication.getContext().getResources().getString(id);
+        return MyApplication.getInstance().getResources().getString(id);
     }
 
     /**
