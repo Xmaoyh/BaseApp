@@ -24,7 +24,7 @@ public class RetrofitUtil {
     }
 
     /**
-     * 获取ApiService实例
+     * 获取RetrofitUtil实例
      *
      * @return
      */
@@ -40,6 +40,10 @@ public class RetrofitUtil {
     public <T> T getService(final Class<T> service) {
 
         return retrofit.create(service);
+    }
+
+    public IApiAction api() {
+        return getInstance().getService(IApiAction.class);
     }
 
     private static class ApiHolder {
