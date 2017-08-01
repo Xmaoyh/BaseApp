@@ -1,13 +1,13 @@
 package com.maoyihan.www.kobe.base;
 
-import android.app.Activity;
 import android.os.Bundle;
+import android.support.v7.app.AppCompatActivity;
 import android.view.WindowManager;
 
 /** activity基类
  * Created by Administrator on 2016/9/15.
  */
-public abstract class BaseActivity extends Activity {
+public abstract class BaseActivity extends AppCompatActivity {
 
     protected String tag = getClass().getSimpleName();
 

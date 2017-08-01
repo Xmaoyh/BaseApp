@@ -1,12 +1,11 @@
 package com.maoyihan.www.kobe.base;
 
-import android.app.Application;
-import android.content.Context;
+import android.support.multidex.MultiDexApplication;
 
 /** 应用程序实体
  * Created by Administrator on 2016/9/15.
  */
-public class MyApplication extends Application {
+public class MyApplication extends MultiDexApplication {
     private static MyApplication app;
 
     @Override
