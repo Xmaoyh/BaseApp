@@ -22,7 +22,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         ActivityControl.addAty(tag, this);
         initView();
         initData();
-        onMyClick();
+        initListener();
     }
 
 
@@ -46,7 +46,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     /**
      * 点击事件
      */
-    protected abstract void onMyClick();
+    protected abstract void initListener();
 
 
     @Override
