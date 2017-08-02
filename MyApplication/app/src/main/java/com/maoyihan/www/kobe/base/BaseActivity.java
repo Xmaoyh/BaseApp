@@ -6,6 +6,7 @@ import android.support.v7.app.AppCompatActivity;
 import android.text.TextUtils;
 import android.view.View;
 import android.view.WindowManager;
+import android.widget.FrameLayout;
 import android.widget.ImageView;
 import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
@@ -21,7 +22,7 @@ import com.maoyihan.www.kobe.utils.ToastUtils;
 public abstract class BaseActivity extends AppCompatActivity {
     protected String tag = getClass().getSimpleName();
 
-    private LinearLayout llBaseContent;
+    private FrameLayout flBaseContent;
     private RelativeLayout rlTitle;
     private ImageView ivBack;
     private TextView tvTitle;
@@ -48,7 +49,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     }
 
     private void initDefaultView(int layoutResId) {
-        llBaseContent = (LinearLayout) findViewById(R.id.ll_base_content);
+        flBaseContent = (FrameLayout) findViewById(R.id.fl_activity_child_container);
         rlTitle = (RelativeLayout) findViewById(R.id.commonTitle_rl);
         ivBack = (ImageView) findViewById(R.id.title_iv_back);
         tvTitle = (TextView) findViewById(R.id.title_tv_title);
@@ -60,11 +61,12 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         });
         View childView = getLayoutInflater().inflate(layoutResId, null);
-        llBaseContent.addView(childView);
+        flBaseContent.addView(childView,0);
     }
 
     /**
      * 返回值为所要加载的布局文件
+     *
      */
     protected abstract int getLayout();
 
