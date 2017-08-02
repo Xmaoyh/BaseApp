@@ -1,23 +1,37 @@
 package com.maoyihan.www.kobe.base;
 
 import android.os.Bundle;
+import android.support.annotation.LayoutRes;
 import android.support.v7.app.AppCompatActivity;
+import android.text.TextUtils;
+import android.view.View;
 import android.view.WindowManager;
+import android.widget.ImageView;
+import android.widget.LinearLayout;
+import android.widget.RelativeLayout;
+import android.widget.TextView;
 
-/** activity基类
+import com.maoyihan.www.kobe.R;
+import com.maoyihan.www.kobe.utils.ToastUtils;
+
+/**
+ * activity基类
  * Created by Administrator on 2016/9/15.
  */
 public abstract class BaseActivity extends AppCompatActivity {
-
     protected String tag = getClass().getSimpleName();
+
+    private LinearLayout llBaseContent;
+    private RelativeLayout rlTitle;
+    private ImageView ivBack;
+    private TextView tvTitle;
+    private RelativeLayout rlLoading;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         //去掉手机信息栏
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
-        //所有继承该类的Activity均有该动画
-//        overridePendingTransition(R.anim.activity_in, R.anim.activity_out);
         setContentView(getLayout());
         ActivityControl.addAty(tag, this);
         initView();
@@ -25,11 +39,32 @@ public abstract class BaseActivity extends AppCompatActivity {
         initListener();
     }
 
+    @Override
+    public void setContentView(@LayoutRes int layoutResID) {
+        View view = getLayoutInflater().inflate(R.layout.activity_base, null);
+        super.setContentView(view);
+        //加载子类Activity的布局
+        initDefaultView(layoutResID);
+    }
+
+    private void initDefaultView(int layoutResId) {
+        llBaseContent = (LinearLayout) findViewById(R.id.ll_base_content);
+        rlTitle = (RelativeLayout) findViewById(R.id.commonTitle_rl);
+        ivBack = (ImageView) findViewById(R.id.title_iv_back);
+        tvTitle = (TextView) findViewById(R.id.title_tv_title);
+        rlLoading = (RelativeLayout) findViewById(R.id.commonProgress_rl);
+        ivBack.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View v) {
+                finish();
+            }
+        });
+        View childView = getLayoutInflater().inflate(layoutResId, null);
+        llBaseContent.addView(childView);
+    }
 
     /**
      * 返回值为所要加载的布局文件
-     *
-     * @return
      */
     protected abstract int getLayout();
 
@@ -44,7 +79,7 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initData();
 
     /**
-     * 点击事件
+     * 监听事件
      */
     protected abstract void initListener();
 
@@ -57,11 +92,34 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onResume() {
         super.onResume();
-
     }
 
     @Override
     protected void onPause() {
         super.onPause();
+    }
+
+    public void setTitle(String title) {
+        if (!TextUtils.isEmpty(title)) {
+            tvTitle.setText(title);
+        }
+    }
+
+    public void showLoadingView() {
+        rlLoading.setVisibility(View.VISIBLE);
+    }
+
+    public void hideLoadingView() {
+        rlLoading.setVisibility(View.GONE);
+    }
+
+    public void showMsg(String msg) {
+        if (!TextUtils.isEmpty(msg)) {
+            ToastUtils.showShort(this, msg);
+        }
+    }
+
+    public void hideTitle() {
+        rlTitle.setVisibility(View.GONE);
     }
 }
