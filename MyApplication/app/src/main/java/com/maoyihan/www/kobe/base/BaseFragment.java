@@ -27,7 +27,7 @@ public abstract class BaseFragment extends Fragment{
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
         initData();
-        onMyClick();
+        initListener();
     }
 
 
@@ -48,8 +48,8 @@ public abstract class BaseFragment extends Fragment{
     protected abstract void initData();
 
     /**
-     * 添加点击事件
+     * 添加监听事件
      */
-    protected abstract void onMyClick();
+    protected abstract void initListener();
 
 }
