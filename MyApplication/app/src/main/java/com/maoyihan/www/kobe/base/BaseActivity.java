@@ -8,7 +8,6 @@ import android.view.View;
 import android.view.WindowManager;
 import android.widget.FrameLayout;
 import android.widget.ImageView;
-import android.widget.LinearLayout;
 import android.widget.RelativeLayout;
 import android.widget.TextView;
 
@@ -35,8 +34,9 @@ public abstract class BaseActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(getLayout());
         ActivityControl.addAty(tag, this);
+        initVariables();
         initView();
-        initData();
+        loadData();
         initListener();
     }
 
@@ -61,14 +61,18 @@ public abstract class BaseActivity extends AppCompatActivity {
             }
         });
         View childView = getLayoutInflater().inflate(layoutResId, null);
-        flBaseContent.addView(childView,0);
+        flBaseContent.addView(childView, 0);
     }
 
     /**
      * 返回值为所要加载的布局文件
-     *
      */
     protected abstract int getLayout();
+
+    /**
+     * 初始化变量，包括Intent带的数据
+     */
+    protected abstract void initVariables();
 
     /**
      * 初始化控件
@@ -76,9 +80,9 @@ public abstract class BaseActivity extends AppCompatActivity {
     protected abstract void initView();
 
     /**
-     * 初始化数据
+     * 调用API获取数据
      */
-    protected abstract void initData();
+    protected abstract void loadData();
 
     /**
      * 监听事件
