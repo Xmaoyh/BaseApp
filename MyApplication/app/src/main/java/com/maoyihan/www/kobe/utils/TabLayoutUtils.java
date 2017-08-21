@@ -1,7 +1,10 @@
 package com.maoyihan.www.kobe.utils;
 
+import android.app.Activity;
 import android.content.Context;
 import android.support.design.widget.TabLayout;
+import android.util.DisplayMetrics;
+import android.view.View;
 import android.widget.LinearLayout;
 
 import java.lang.reflect.Field;
@@ -12,7 +15,6 @@ import java.lang.reflect.Field;
  */
 
 public class TabLayoutUtils {
-
     public static void setIndicator(Context context, TabLayout tabs, double leftDip, double rightDip) {
         Class<?> tabLayout = tabs.getClass();
         Field tabStrip = null;
@@ -30,23 +32,25 @@ public class TabLayoutUtils {
             e.printStackTrace();
         }
 
-//        int left = (int) (getDisplayMetrics(context).density * leftDip);
-//        int right = (int) (getDisplayMetrics(context).density * rightDip);
-//    public static DisplayMetrics getDisplayMetrics(Context context) {
-//        DisplayMetrics metric = new DisplayMetrics();
-//        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(metric);
-//        return metric;
-//    }
 
-//        for (int i = 0; i < ll_tab.getChildCount(); i++) {
-//            View child = ll_tab.getChildAt(i);
-//            child.setPadding(0, 0, 0, 0);
-//            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
-//            params.leftMargin = left;
-//            params.rightMargin = right;
-//            child.setLayoutParams(params);
-//            child.invalidate();
-//        }
+        int left = (int) (getDisplayMetrics(context).density * leftDip);
+        int right = (int) (getDisplayMetrics(context).density * rightDip);
+
+        for (int i = 0; i < ll_tab.getChildCount(); i++) {
+            View child = ll_tab.getChildAt(i);
+            child.setPadding(0, 0, 0, 0);
+            LinearLayout.LayoutParams params = new LinearLayout.LayoutParams(0, LinearLayout.LayoutParams.MATCH_PARENT, 1);
+            params.leftMargin = left;
+            params.rightMargin = right;
+            child.setLayoutParams(params);
+            child.invalidate();
+        }
+    }
+
+    private static DisplayMetrics getDisplayMetrics(Context context) {
+        DisplayMetrics metric = new DisplayMetrics();
+        ((Activity) context).getWindowManager().getDefaultDisplay().getMetrics(metric);
+        return metric;
     }
 
 }
