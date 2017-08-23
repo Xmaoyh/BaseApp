@@ -2,6 +2,7 @@ package com.maoyihan.www.kobe.module.home.view.activity;
 
 import android.animation.ObjectAnimator;
 import android.animation.ValueAnimator;
+import android.content.Intent;
 import android.os.Bundle;
 import android.support.design.widget.FloatingActionButton;
 import android.support.design.widget.Snackbar;
@@ -23,6 +24,7 @@ public class MainActivity extends AppCompatActivity
         implements NavigationView.OnNavigationItemSelectedListener {
     private MyImage myImage;
     private Button btnAnimation;
+    private FloatingActionButton faBtn;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -51,6 +53,10 @@ public class MainActivity extends AppCompatActivity
 
         myImage = (MyImage) findViewById(R.id.image);
         btnAnimation = (Button) findViewById(R.id.btn_animation);
+        fab = (FloatingActionButton) findViewById(R.id.fab);
+        fab.setOnClickListener(v -> {
+            startActivity(new Intent(this,CustomViewActivity.class));
+        });
         testValueScroll();
     }
 
