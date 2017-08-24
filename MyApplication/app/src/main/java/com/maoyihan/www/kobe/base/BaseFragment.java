@@ -1,6 +1,8 @@
 package com.maoyihan.www.kobe.base;
 
+import android.app.Activity;
 import android.app.Fragment;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.text.TextUtils;
@@ -15,6 +17,14 @@ import com.maoyihan.www.kobe.utils.ToastUtils;
  * Created by Administrator on 2016/9/15.
  */
 public abstract class BaseFragment extends Fragment {
+    protected Activity mActivity;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mActivity = (Activity) context;
+    }
+
     @Nullable//@Nullable 表示定义的字段可以为空.
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container, Bundle savedInstanceState) {

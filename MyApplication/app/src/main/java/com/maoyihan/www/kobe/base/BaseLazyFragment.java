@@ -1,5 +1,7 @@
 package com.maoyihan.www.kobe.base;
 
+import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 import android.support.annotation.Nullable;
 import android.support.v4.app.Fragment;
@@ -22,6 +24,13 @@ public abstract class BaseLazyFragment extends Fragment {
     private boolean isPrepared;
     //已经初始化过了
     private boolean isInit;
+    protected Activity mActivity;
+
+    @Override
+    public void onAttach(Context context) {
+        super.onAttach(context);
+        this.mActivity = (Activity) context;
+    }
 
     @Nullable//@Nullable 表示定义的字段可以为空.
     @Override
