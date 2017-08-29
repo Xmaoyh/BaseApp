@@ -1,6 +1,8 @@
 package com.maoyihan.www.kobe.http;
 
+import com.google.gson.GsonBuilder;
 import com.maoyihan.www.kobe.config.BuildConfig;
+import com.maoyihan.www.kobe.utils.NullStringToEmptyAdapterFactory;
 
 import retrofit2.Retrofit;
 import retrofit2.adapter.rxjava.RxJavaCallAdapterFactory;
@@ -19,7 +21,7 @@ public class RetrofitUtil {
                 .baseUrl(BuildConfig.BASE_URL)
                 .client(OkHttpManager.getInstance())
                 .addCallAdapterFactory(RxJavaCallAdapterFactory.create())
-                .addConverterFactory(GsonConverterFactory.create())
+                .addConverterFactory(GsonConverterFactory.create(new GsonBuilder().registerTypeAdapterFactory(new NullStringToEmptyAdapterFactory()).create()))
                 .build();
     }
 
