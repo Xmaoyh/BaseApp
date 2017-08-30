@@ -40,6 +40,7 @@ public abstract class BaseFragment extends Fragment {
     @Override
     public void onActivityCreated(@Nullable Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
+        handleBundle(savedInstanceState);
         initData();
         initListener();
     }
@@ -64,6 +65,11 @@ public abstract class BaseFragment extends Fragment {
      * 添加监听事件
      */
     protected abstract void initListener();
+
+    /**
+     * 处理Bundle
+     */
+    protected abstract void handleBundle(Bundle savedInstanceState);
 
     public void showMsg(String msg) {
         if (!TextUtils.isEmpty(msg)) {

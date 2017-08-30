@@ -34,10 +34,12 @@ public abstract class BaseActivity extends AppCompatActivity {
         this.getWindow().setFlags(WindowManager.LayoutParams.FLAG_FULLSCREEN, WindowManager.LayoutParams.FLAG_FULLSCREEN);
         setContentView(getLayout());
         ActivityControl.addAty(tag, this);
+        handleBundle(savedInstanceState);
         initVariables();
         initView();
         loadData();
         initListener();
+
     }
 
     @Override
@@ -88,6 +90,11 @@ public abstract class BaseActivity extends AppCompatActivity {
      * 监听事件
      */
     protected abstract void initListener();
+
+    /**
+     * 处理Bundle
+     */
+    protected abstract void handleBundle(Bundle savedInstanceState);
 
 
     @Override
