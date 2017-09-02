@@ -5,7 +5,7 @@ package com.maoyihan.www.kobe.base;
  * Created by Administrator on 2017/8/2 0002.
  */
 
-public abstract class BaseResponse {
+public class BaseResponse {
     /**
      * code : 0
      * message : success
