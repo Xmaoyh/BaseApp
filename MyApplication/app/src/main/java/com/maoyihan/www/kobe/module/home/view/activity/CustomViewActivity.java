@@ -1,5 +1,7 @@
 package com.maoyihan.www.kobe.module.home.view.activity;
 
+import android.os.Bundle;
+
 import com.maoyihan.www.kobe.R;
 import com.maoyihan.www.kobe.base.BaseActivity;
 
@@ -30,6 +32,11 @@ public class CustomViewActivity extends BaseActivity{
 
     @Override
     protected void initListener() {
+
+    }
+
+    @Override
+    protected void handleBundle(Bundle savedInstanceState) {
 
     }
 }
