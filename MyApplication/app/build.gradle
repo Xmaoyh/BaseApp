@@ -56,4 +56,6 @@ dependencies {
     compile 'com.scwang.smartrefresh:SmartRefreshLayout:1.0.3-alpha-6'
     /*adapterHelper*/
     compile 'com.github.CymChad:BaseRecyclerViewAdapterHelper:2.9.22'
+    /*EventBus*/
+    compile 'org.greenrobot:eventbus:3.0.0'
 }

@@ -14,6 +14,8 @@ import android.widget.TextView;
 import com.maoyihan.www.kobe.R;
 import com.maoyihan.www.kobe.utils.ToastUtils;
 
+import org.greenrobot.eventbus.EventBus;
+
 /**
  * activity基类
  * Created by Administrator on 2016/9/15.
@@ -39,7 +41,7 @@ public abstract class BaseActivity extends AppCompatActivity {
         initView();
         loadData();
         initListener();
-
+        EventBus.getDefault().register(this);
     }
 
     @Override
@@ -100,6 +102,8 @@ public abstract class BaseActivity extends AppCompatActivity {
     @Override
     protected void onDestroy() {
         super.onDestroy();
+        EventBus.getDefault().unregister(this);
+        ActivityControl.removeAty(tag);
     }
 
     @Override
