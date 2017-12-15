@@ -12,20 +12,19 @@ import io.reactivex.disposables.Disposable;
 
 
 /**
- * 请求开始显示progress，请求结束关闭progress
+ * 不带progress
  * Created by Administrator on 2017/8/10 0010.
  */
 
-public abstract class ProgressObserver<T extends BaseResponse> implements Observer<T> {
+public abstract class BaseObserver<T extends BaseResponse> implements Observer<T> {
     private BaseActivity mActivity;
 
-    public ProgressObserver(BaseActivity activity) {
+    public BaseObserver(BaseActivity activity) {
         this.mActivity = activity;
     }
 
     @Override
     public void onSubscribe(@NonNull Disposable d) {
-        mActivity.showLoadingView();
     }
 
     @Override
@@ -39,7 +38,6 @@ public abstract class ProgressObserver<T extends BaseResponse> implements Observ
 
     @Override
     public void onError(@NonNull Throwable e) {
-        mActivity.hideLoadingView();
         ToastUtils.showShort(MyApplication.getInstance(), MyApplication.getInstance().getString(R.string.network_on_error) + e.toString());
     }
 
@@ -50,24 +48,5 @@ public abstract class ProgressObserver<T extends BaseResponse> implements Observ
 
     abstract void doOnNext(@NonNull T t);
 
-    //    @Override
-//    public void onStart() {
-//        super.onStart();
-//        mActivity.showLoadingView();
-//    }
-//
-//    @Override
-//    public void onCompleted() {
-//        mActivity.hideLoadingView();
-//    }
-//
-//    @Override
-//    public void onError(Throwable e) {
-//        mActivity.hideLoadingView();
-//        ToastUtils.showShort(MyApplication.getInstance(), MyApplication.getInstance().getString(R.string.network_on_error) + e.toString());
-//    }
-//
-//    @Override
-//    public abstract void onNext(T t);
 
 }
