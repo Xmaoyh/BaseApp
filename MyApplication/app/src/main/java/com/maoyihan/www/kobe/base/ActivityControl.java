@@ -26,6 +26,7 @@ public class ActivityControl {
     public static boolean removeAty(String key) {
         Activity aty = activityMap.remove(key);
         if (aty != null) {
+            aty.finish();
             return true;
         }
         return false;
